@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/ygunayer/talos-decoder.svg)](https://travis-ci.org/ygunayer/talos-decoder.svg)
 [![Coverage Status](https://coveralls.io/repos/ygunayer/talos-decoder/badge.svg?branch=master&service=github)](https://coveralls.io/github/ygunayer/talos-decoder?branch=master)
 
 # The Talos Compendium
