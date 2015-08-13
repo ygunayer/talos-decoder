@@ -64,7 +64,7 @@ When running the ```talos-encoder``` batch file or Bash script, this argument ca
 
 **Example**  
 ```
-export TALOS_ENCODER_OPTS=-Dgame.path=/Path/To/Steam/common/The Talos Principle; export talos-decoder
+export TALOS_ENCODER_OPTS=-Dgame.path=/Path/To/Steam/common/The Talos Principle; bash talos-decoder
 ```
 
 ## Contributing
