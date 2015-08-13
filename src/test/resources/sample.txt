@@ -1,0 +1,4 @@
+TermDlg.FoundTexts.Butler.Dummy1.Name=Foo Bar 1
+TermDlg.FoundTexts.Butler.Dummy1.Text=Foo bar 66 6F 6F 20 62 61 72 bla bla burrito
+TermDlg.FoundTexts.Butler.Dummy2.Name=Foo Bar 2
+TermDlg.FoundTexts.Butler.Dummy2.Text=ほげほげ 66 6F 6F 20 62 61 72 ぴよぴよ
