@@ -2,6 +2,7 @@ package com.yalingunayer.talosdecoder.output;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.UnknownHostException;
 import java.nio.charset.Charset;
 import java.util.Collection;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -27,7 +28,7 @@ public class ElasticSearchTextSink extends PostProcessingTextSink<FlatOutputText
     private AtomicBoolean prepared;
     private ElasticSearch elastic;
 
-    public ElasticSearchTextSink(String hostname, int port) {
+    public ElasticSearchTextSink(String hostname, int port) throws UnknownHostException {
 	prepared = new AtomicBoolean(false);
 	elastic = new ElasticSearch(hostname, port);
     }

@@ -1,6 +1,7 @@
 package com.yalingunayer.talosdecoder.output;
 
 import java.io.File;
+import java.net.UnknownHostException;
 
 public class TextSinks {
 
@@ -8,7 +9,7 @@ public class TextSinks {
 	return new BasicTextSink();
     }
 
-    public static ElasticSearchTextSink elastic(String hostname, int port) {
+    public static ElasticSearchTextSink elastic(String hostname, int port) throws UnknownHostException {
 	return new ElasticSearchTextSink(hostname, port);
     }
 

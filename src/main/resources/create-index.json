@@ -21,17 +21,6 @@
                 "key": {
                     "type": "string",
                     "analyzer": "filename_analyzer"
-                },
-                "input": {
-                    "type": "string"
-                },
-                "output": {
-                    "type": "string"
-                },
-                "segments": {
-                    "type": "object",
-                    "index": "no",
-                    "store": "yes"
                 }
             }
         }
