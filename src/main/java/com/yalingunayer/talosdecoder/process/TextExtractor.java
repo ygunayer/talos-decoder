@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -25,6 +27,13 @@ import com.yalingunayer.talosdecoder.dto.InputTextEntry;
  *
  */
 public class TextExtractor {
+    private static final Map<String, String> nameFieldMappings;
+
+    static {
+        nameFieldMappings = new HashMap<String, String>();
+        nameFieldMappings.put("TermDlg.FoundTexts.IAN.AMA", "TermDlg.FoundTexts.IAN.AskMeAnything");
+    }
+
     public static final String DEFAULT_PREFIX = "TermDlg.FoundTexts";
     public static final String DEFAULT_CHARSET = "utf-8";
 
@@ -38,7 +47,7 @@ public class TextExtractor {
      * @see {@link DEFAULT_CHARSET}
      */
     public TextExtractor() {
-	this(DEFAULT_PREFIX, DEFAULT_CHARSET);
+        this(DEFAULT_PREFIX, DEFAULT_CHARSET);
     }
 
     /**
@@ -48,8 +57,8 @@ public class TextExtractor {
      * @param charset
      */
     public TextExtractor(final String prefix, final String charset) {
-	this.prefix = prefix;
-	this.charset = Charset.forName(charset);
+        this.prefix = prefix;
+        this.charset = Charset.forName(charset);
     }
 
     /**
@@ -61,11 +70,11 @@ public class TextExtractor {
      * @return
      */
     public Collection<InputTextEntry> extract(final String input) {
-	try {
-	    return extract(IOUtils.toInputStream(input, charset));
-	} catch (IOException e) {
-	    throw new RuntimeException("Failed to convert the string into an input stream.", e);
-	}
+        try {
+            return extract(IOUtils.toInputStream(input, charset));
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to convert the string into an input stream.", e);
+        }
     }
 
     /**
@@ -78,22 +87,22 @@ public class TextExtractor {
      * @throws IOException
      */
     public Collection<InputTextEntry> extract(final InputStream in) throws IOException {
-	InputStreamReader reader = null;
-	try {
-	    // the game stores texts in the same format as a Java properties
-	    // file
-	    // and the keys for the important texts are in the following format:
-	    // TermDlg.FoundTexts.Alexandra.AI_Citizenship.Name
-	    // TermDlg.FoundTexts.Alexandra.AI_Citizenship.Text
-	    Properties props = new Properties();
+        InputStreamReader reader = null;
+        try {
+            // the game stores texts in the same format as a Java properties
+            // file
+            // and the keys for the important texts are in the following format:
+            // TermDlg.FoundTexts.Alexandra.AI_Citizenship.Name
+            // TermDlg.FoundTexts.Alexandra.AI_Citizenship.Text
+            Properties props = new Properties();
 
-	    // the Properties.load() method assumes Latin-1 encoding by default
-	    // to overcome this we need to explicitly define a utf-8 reader and
-	    // pass it to the load method
-	    reader = new InputStreamReader(in, charset);
-	    props.load(reader);
+            // the Properties.load() method assumes Latin-1 encoding by default
+            // to overcome this we need to explicitly define a utf-8 reader and
+            // pass it to the load method
+            reader = new InputStreamReader(in, charset);
+            props.load(reader);
 
-	    // @formatter:off
+            // @formatter:off
 	    Set<String> keyNames = props.keySet()
     		    .stream()
     		    .map(k -> (String) k)
@@ -102,13 +111,14 @@ public class TextExtractor {
     		    .collect(Collectors.toSet());
 	    // @formatter:on
 
-	    return keyNames.stream().map(key -> {
-		String filename = props.getProperty(key + ".Name");
-		String contents = props.getProperty(key + ".Text");
-		return new InputTextEntry(key, filename, contents);
-	    }).collect(Collectors.toSet());
-	} finally {
-	    IOUtils.closeQuietly(reader);
-	}
+            return keyNames.stream().map(key -> {
+                String filenameKey = nameFieldMappings.getOrDefault(key, key);
+                String filename = props.getProperty(filenameKey + ".Name");
+                String contents = props.getProperty(key + ".Text");
+                return new InputTextEntry(key, filename, contents);
+            }).collect(Collectors.toSet());
+        } finally {
+            IOUtils.closeQuietly(reader);
+        }
     }
 }
