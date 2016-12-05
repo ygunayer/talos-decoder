@@ -6,7 +6,7 @@ The data generation components of The Talos Compendium, a text database for [The
 
 For the UI and web app component of the project, see [ygunayer/talos-ui](https://github.com/ygunayer/talos-ui)
 
-![http://i.imgur.com/0RDefqV.png](http://i.imgur.com/0RDefqV.png "Screenshot")
+![http://i.imgur.com/FMMJJQj.png](http://i.imgur.com/FMMJJQj.png "Screenshot")
 
 ## About
 For a more detailed explanation on the project, see the *About* section on [ygunayer/talos-ui/README.md](https://github.com/ygunayer/talos-ui/README.md)
