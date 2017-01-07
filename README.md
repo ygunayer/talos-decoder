@@ -4,12 +4,12 @@
 # The Talos Compendium
 The data generation components of The Talos Compendium, a text database for [The Talos Principle](http://www.croteam.com/talosprinciple/)
 
-For the UI and web app component of the project, see [ygunayer/talos-ui](https://github.com/ygunayer/talos-ui)
+For the UI and web app component of the project, see [ygunayer/talos2](https://github.com/ygunayer/talos2)
 
 ![http://i.imgur.com/FMMJJQj.png](http://i.imgur.com/FMMJJQj.png "Screenshot")
 
 ## About
-For a more detailed explanation on the project, see the *About* section on [ygunayer/talos-ui/README.md](https://github.com/ygunayer/talos-ui/README.md)
+For a more detailed explanation on the project, see the README at [ygunayer/talos2/README.md](https://github.com/ygunayer/talos2/README.md)
 
 ## Prerequisites
 - Gradle (tested w/ 2.5)
